@@ -1,0 +1,148 @@
+@import "stafftonnetz2font.css"; 
+/* CSS stylesheet for use with stafftonnetz  font  */
+/* includes styles to format a raw text document into a score */
+/* FEATURES 3/1/2013 */
+/* score is a three-column table with vertical staff lines and horizontal time slices */
+/* * left column: counts: monospace text */ 
+/* * center column: rendered by stafftonnetz1b font as staff line and notehead symbols */ 
+/* * right column: chords and other comments: proportional text*/
+/* * notehead coloring for voices, etc. */
+/* * bar lines */
+/* * page breaks */
+
+/*==================================================*/
+/* reset to eliminate extra space in table cells */
+
+* {margin: 1% 1% 1% 1%; padding: 0 0 0 0;
+}
+
+/* table classes */
+  .table 	{display: table; }
+  .table, .th, .td {border: 0; border-collapse: collapse; line-height: 8pt}
+  .column	{display: table-column;}	/* anticipates CSS3/HTML5 */
+  .row 		{display: table-row;}
+  .cell 	{display: table-cell;}
+  
+/* the following provide app-specific names for generic display:table styles
+
+/* score table formats */
+  .st-score	{display: table;}
+  .st-page 	{
+  	page-break-inside: avoid; 
+  	page-break-after: always; 
+  	} 
+
+/* score column (cell) formats */
+/* NOTE: CSS2/HTML4 must use cell format; column formats coming in CSS3 */
+  .st-count {				/* left column: text format */
+  	display: table-cell;
+	font-family: "Courier New", monospace ;
+	font-size: 100%;
+	text-align: left;
+	white-space: pre;
+	padding-left: 1em;
+	} 
+  .st-notes {				/* center column: staff format */
+  	display: table-cell;
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 100%;		
+	text-align: left;
+	white-space: pre;
+	}
+  .st-chord {				/* right column: text format */
+	display: table-cell;
+	font-family: arial, sans-serif;
+	font-size: 100%;
+	color: black ;
+	text-align: left;
+	white-space: nowrap;
+	padding-left: 1em;
+	}
+
+/* score row formats */
+  .st-start	{display: table-row;}
+  	/* USAGE NOTE:  first row of table sets the column widths, 
+ 	so it should be a blank staff line with all positions filled  */
+  .st-staff 	{display: table-row;}
+  .st-bar	{display: table-row;}
+
+/* bar-line formats */
+/* NOTE: bar must be repeated in each cell of row  */
+  .st-bar-thick {			/* group bar (between bars)   */
+  	display: table-cell;
+	border-style: solid;
+	border-width: thick;
+	border-color: black transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 	150%;
+	}  
+  .st-bar-thin {		/* count bar (between bars)   */
+  	display: table-cell;
+	border-style: solid;
+	border-width: thin;
+	border-color: black transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 	150%;
+	}
+  .st-bar-solid {		/* measure bar */
+  	display: table-cell;
+	border-style: solid;
+	border-width: medium;
+	border-color: black transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 150%;
+	}
+  .st-bar-double {		/* measure bar */
+  	display: table-cell;
+	border-style: double;
+	border-width: thick;
+	border-color: black transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 150%;
+	}
+  .st-bar-dotted {		
+    display: table-cell;
+	border-style: dotted;
+	border-width: medium;
+	border-color: black transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 150%;
+	}	
+  .st-bar-dashed {			
+  	display: table-cell;
+	border-style: dashed;
+	border-width: medium;
+	border-color: black transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 	150%;
+	}    
+  .st-bar-break {		/* count bar (between bars)   */
+  	display: table-cell;
+	border-style: hidden;
+	border-width: thin;
+	border-color: transparent transparent transparent transparent;  /* top right bottom left */
+	font-family: StaffTonnetz, "Courier New", monospace ;
+	font-size: 	150%;
+	}
+
+/* notehead formats -- voices SATB */
+  .st-vs {color:DarkRed;} 
+  .st-va {color:DarkOrange;}
+  .st-vt {color:Green;}
+  .st-vb {color:Blue;}
+  /* notehead formats -- Roy Pertchik Colors */
+  .st-pb {color:Blue;} /* F a B D */
+  .st-pr {color:Red;}  /* A C e g */
+  .st-pw {color:Yellow;} /* E G b d */
+
+/* printer formatting */
+@media all {
+  .page-break  { display: none; }
+}
+@media print {
+  .page-break  { display: block; page-break-before: always; }
+}
+@page  { 
+    size: auto;   			/* box size (virtual paper size) */     
+    margin: 5mm 2mm 2mm 2mm;  	/* printer page marigns: top right bottom left DEPRECATED*/
+} 
